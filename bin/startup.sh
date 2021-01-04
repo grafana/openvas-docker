@@ -70,7 +70,7 @@ if [ -n "$OV_PASSWORD" ]; then
 fi
 
 # if requested, update feeds.  This could take a while
-if [ "x$OV_UPDATE" -eq "xyes" ]; then
+if [ "x$OV_UPDATE" == "xyes" ]; then
 	gosu gvm greenbone-feed-sync --type GVMD_DATA
 	gosu gvm greenbone-feed-sync --type CERT
 	gosu gvm greenbone-feed-sync --type SCAP
@@ -89,7 +89,7 @@ echo "ospd-openvas is running"
 # Update VT info into redis store from VT files
 gosu gvm openvas -u
 
-if [ "x$_rebuild" -eq "xtrue" ]; then
+if [ "x$_rebuild" == "xtrue" ]; then
 	gosu gvm gvmd --rebuild-scap
 	gosu gvm gvmd --rebuild
 fi
