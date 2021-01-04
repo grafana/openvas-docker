@@ -29,10 +29,14 @@ RUN yum -y install bzip2 \
                 postgresql-server \
                 postgresql-contrib \
                 greenbone-security-assistant \
-                OSPd-openvas
+                OSPd-openvas \
+                sudo
 
 ## cleanup temp files
 RUN rm -rf /var/cache/yum/*
+
+## add sudoers entry to allow openvas to be launched as root
+RUN echo "gvm ALL = NOPASSWD: /usr/sbin/openvas" >> /etc/sudoers
 
 # add config templates
 COPY config/templates/* /etc/confd/templates/
